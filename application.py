@@ -114,3 +114,16 @@ def slow_endpoint():
     return "This was a slow response after 5 seconds"
 
 # IMPORTANT: No app.run() when deploying to Azure Linux App Service
+
+@app.route('/slow-endpoint')
+def slow_endpoint():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    try:
+        response = requests.get(f"{BACKEND_API_BASE}/api/slow-endpoint")
+        result = response.text
+    except Exception as e:
+        result = {"error": str(e)}
+
+    return result

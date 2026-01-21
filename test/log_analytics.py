@@ -7,8 +7,8 @@ import hmac
 import base64
 
 def send_log_to_loganalytics(log_type, log_data):
-    workspace_id = os.environ.get('workspace_id')
-    shared_key = os.environ.get('shared_key')
+    workspace_id = os.environ.get('LOG_ANALYTICS_WORKSPACE_ID')
+    shared_key = os.environ.get('LOG_ANALYTICS_SHARED_KEY')
 
     if not workspace_id or not shared_key:
         print("❌ Missing LOG_ANALYTICS_WORKSPACE_ID or LOG_ANALYTICS_SHARED_KEY environment variables.")
